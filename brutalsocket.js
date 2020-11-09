@@ -2,7 +2,7 @@ const EventEmitter = require("events");
 const WebSocket = require("ws");
 const HttpsProxyAgent = require("https-proxy-agent");
 const url = require("url");
-
+let wsurl;
 class brutalSocket extends EventEmitter {
   /**
    * this is from cazka's github with slight modification by me
@@ -14,7 +14,8 @@ class brutalSocket extends EventEmitter {
    * @param {String} options.ipv6
    */
 
-  constructor(wsurl, options) {
+  constructor(link, options) {
+    wsurl = link;
     super();
     this._options = {
       timeout: 20000,

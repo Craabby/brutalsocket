@@ -2,20 +2,19 @@ const EventEmitter = require("events");
 const WebSocket = require("ws");
 const HttpsProxyAgent = require("https-proxy-agent");
 const url = require("url");
-const { link } = require("fs");
 
 class brutalSocket extends EventEmitter {
   /**
    * this is from cazka's github with slight modification by me
    * https://github.com/Cazka/diepsocket/blob/master/src/diepsocket.js
-   * @param {String} link
+   * @param {String} wsurl
    * @param {Object} options
    * @param {Number} options.timeout
    * @param {String} options.proxy
    * @param {String} options.ipv6
    */
 
-  constructor(link, options) {
+  constructor(wsurl, options) {
     super();
     this._options = {
       timeout: 20000,
@@ -58,8 +57,8 @@ class brutalSocket extends EventEmitter {
       options.family = 6;
       options.localAddress = this._options.ipv6;
     }
-
-    this._socket = new WebSocket(link, options);
+    // this came straight from what cazka did in diepsocket
+    this._socket = new WebSocket(wsurl, options);
     this._socket.on("open", () => this._onopen());
     this._socket.on("close", (code, reason) => this._onclose(code, reason));
     this._socket.on("error", (err) => this._onerror(err));

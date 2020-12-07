@@ -5,4 +5,4 @@ for it to work you need to cd to the folder you installed it to and rin
 ```
 npm i
 ```
-right now it is pretty broken so i am uploading it to github to see if anyone knows why
+the event listeners are `open`, `message`, `close`, and `error`

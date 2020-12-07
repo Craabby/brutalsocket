@@ -45,7 +45,7 @@ class BrutalSocket extends EventEmitter {
     super.emit("error", err);
   }
   onclose() {
-    this.`--;
+    this.count--;
     this.bot.close();
     super.emit("close");
   }

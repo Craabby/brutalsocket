@@ -1,9 +1,9 @@
 const brutalSocket = require("./brutalsocket");
 
 var bot = new brutalSocket("ws://158.69.123.15:8103/");
-bot._onerror = function (err) {
+bot.on('error') = function (err) {
   console.log(err);
 };
-bot._onopen = function () {
+bot.on('open') = function () {
   bot.spawn("sdf");
 };

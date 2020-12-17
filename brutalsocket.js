@@ -3,7 +3,7 @@ const EventEmitter = require("events");
 
 /**
  * @param {string} link
- * @param {object} _options
+ * @param {object} options
  */
 class BrutalSocket extends EventEmitter {
   constructor(link, options) {

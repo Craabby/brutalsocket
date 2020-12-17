@@ -64,6 +64,14 @@ class BrutalSocket extends EventEmitter {
     this.encodedSpawnPacket.push(0);
     return this.bot.send(new Uint8Array(this.encodedSpawnPacket));
   }
+//   spawn(name) {
+//     var c=new ArrayBuffer(3+2*a.length),
+//         d=new DataView(c);
+//     d.setUint8(0,3);
+//     for(var e=0;e<name.length;++e)
+//       d.setUint16(1+2*e,name.charCodeAt(e),!0);
+//     console.log(new Uint8Array(c))
+//   }
 }
 
 module.exports = BrutalSocket;

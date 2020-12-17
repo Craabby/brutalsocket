@@ -6,10 +6,10 @@ const EventEmitter = require("events");
  * @param {object} _options
  */
 class BrutalSocket extends EventEmitter {
-  constructor(link, _options) {
+  constructor(link, options) {
     super();
     this.wsurl = link;
-    this.options = _options;
+    this.options = options;
     this.bot;
     this.encodedSpawnPacket = [3];
     this.count = 0;

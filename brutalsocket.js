@@ -39,10 +39,10 @@ class BrutalSocket extends EventEmitter {
   onmessage(msg) {
     super.emit("message", msg);
   }
-  onerror(err) {
+  onerror(errcode, errmsg) {
     this.bot.close();
-    // console.error(err);
-    super.emit("error", err);
+    // console.error(errcode, errmesg);
+    super.emit("error", errcode, errmsg);
   }
   onclose() {
     this.count--;

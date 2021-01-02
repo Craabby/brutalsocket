@@ -12,28 +12,18 @@ class BrutalSocket extends EventEmitter {
     this.options = options;
     this.bot;
     this.encodedSpawnPacket = [3];
-    this.count = 0;
     this.connect();
   }
   connect() {
     this.bot = new ws(this.wsurl, this.options);
-    this.bot.on("open", () => {
-      this.onopen();
-    });
-    this.bot.on("close", () => {
-      this.onclose();
-    });
-    this.bot.on("error", (err) => {
-      this.onerror(err);
-    });
-    this.bot.on("message", (msg) => {
-      this.onmessage(msg);
-    });
+    this.bot.on("open", () => this.onopen());
+    this.bot.on("close", () => this.onclose());
+    this.bot.on("error", (err) => this.onerror(err));
+    this.bot.on("message", (msg) => this.onmessage(msg));
   }
   onopen() {
     this.bot.send(new Uint8Array([1, 145, 0, 96, 0]));
     this.bot.send(new Uint8Array([0]));
-    this.count++;
     super.emit("open");
   }
   onmessage(msg) {
@@ -45,7 +35,6 @@ class BrutalSocket extends EventEmitter {
     super.emit("error", errcode, errmsg);
   }
   onclose() {
-    this.count--;
     this.bot.close();
     super.emit("close");
   }

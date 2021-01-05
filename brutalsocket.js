@@ -39,7 +39,11 @@ class BrutalSocket extends EventEmitter {
     super.emit("close");
   }
   close() {
-    this.bot.close();
+    try {
+      this.bot.close();
+    } catch (e) {
+      this.bot.terminate();
+    }
   }
   send(packet) {
     this.bot.send(packet);

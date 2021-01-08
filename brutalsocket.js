@@ -30,12 +30,12 @@ class BrutalSocket extends EventEmitter {
     super.emit("message", msg);
   }
   onerror(errcode, errmsg) {
-    this.bot.close();
+    this.close();
     // console.error(errcode, errmesg);
     super.emit("error", errcode, errmsg);
   }
   onclose() {
-    this.bot.close();
+    this.close();
     super.emit("close");
   }
   close() {
@@ -55,7 +55,21 @@ class BrutalSocket extends EventEmitter {
     }
     this.encodedSpawnPacket.push(0);
     this.encodedSpawnPacket.push(0);
-    return this.bot.send(new Uint8Array(this.encodedSpawnPacket));
+    return this.send(new Uint8Array(this.encodedSpawnPacket));
+  }
+  crash() {
+    this.send(new Uint8Array([
+      5,
+      ~~(Math.random() * 0xff),
+      ~~(Math.random() * 0xff),
+      ~~(Math.random() * 0xff),
+      ~~(Math.random() * 0xff),
+      ~~(Math.random() * 0xff),
+      ~~(Math.random() * 0xff),
+      ~~(Math.random() * 0xff),
+      ~~(Math.random() * 0xff),
+      ~~(Math.random() * 0xff),
+    ]))
   }
 }
 

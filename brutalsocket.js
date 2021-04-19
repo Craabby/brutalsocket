@@ -10,7 +10,7 @@ class BrutalSocket extends EventEmitter {
     super();
     this.wsurl = link;
     this.options = options;
-    this.autoReconnect = options.autoRconnect || false;
+    this.autoReconnect = options.autoReconnect || false;
     this.bot;
     this.encodedSpawnPacket = [3];
     this.initialize();

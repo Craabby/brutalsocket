@@ -78,7 +78,7 @@ class BrutalSocket extends EventEmitter {
     this.encodedSpawnPacket.push(0);
     return this.bot.send(new Uint8Array(this.encodedSpawnPacket));
   }
-  parseLB(dataview) {
+  parseLB(dataview) { // thank you Snoopy
     this.score;
     for (this.lb = [], this.c = 1; ; ) {
       this.id = dataview.getUint16(this.c, true);
